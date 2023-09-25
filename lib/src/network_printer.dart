@@ -8,7 +8,7 @@
 
 import 'dart:io';
 import 'dart:typed_data' show Uint8List;
-import 'package:esc_pos_utils/esc_pos_utils.dart';
+import 'package:flutter_esc_pos_utils/flutter_esc_pos_utils.dart';
 import 'package:image/image.dart';
 import './enums.dart';
 
@@ -31,8 +31,11 @@ class NetworkPrinter {
   PaperSize get paperSize => _paperSize;
   CapabilityProfile get profile => _profile;
 
-  Future<PosPrintResult> connect(String host,
-      {int port = 91000, Duration timeout = const Duration(seconds: 5)}) async {
+  Future<PosPrintResult> connect(
+    String host, {
+    int port = 91000,
+    Duration timeout = const Duration(seconds: 10),
+  }) async {
     _host = host;
     _port = port;
     try {
@@ -157,7 +160,7 @@ class NetworkPrinter {
   void qrcode(
     String text, {
     PosAlign align = PosAlign.center,
-    QRSize size = QRSize.Size4,
+    QRSize size = QRSize.size4,
     QRCorrection cor = QRCorrection.L,
   }) {
     _socket.add(_generator.qrcode(text, align: align, size: size, cor: cor));
