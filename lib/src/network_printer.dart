@@ -33,7 +33,7 @@ class NetworkPrinter {
 
   Future<PosPrintResult> connect(
     String host, {
-    int port = 91000,
+    int port = 9100,
     Duration timeout = const Duration(seconds: 10),
   }) async {
     _host = host;
